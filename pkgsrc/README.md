@@ -33,11 +33,16 @@ Provides a package provider called pkgsrc which will install & remove pkgsrc pac
 Attributes
 ==========
 
+At present the second phase of the boostrap is somewhat primitive, in that it downloads the dependencies required to run `pkgin`, installs them, and then installs `pkgin`.  Because at this stage in the bootstrap we don't have an intelligent enough binary package manager, we need to specify the versions exactly.  As these will vary depending on the release of pkgsrc and patch level of the individual repository, we provide the capability to specify these as attributes.
+
 * `node['pkgsrc']['package_server']` - HTTP or FTP path for remote server where pkgsrc binaries reside.
 * `node['pkgsrc']['bootstrap_tarball']['url']` - URL of the pkgsrc bootstrap tarball.
 * `node['pkgsrc']['bootstrap_tarball']['checksum']` - MD5 checksum of the bootstrap tarball.
+* `node['pkgsrc']['pkgin']['dependencies']` - Hash of pkgin dependencies and version numbers
+* `node['pkgsrc']['pkgin']['version']` - Version of pkgin to install
 
 The Atalanta Systems Linux pkgsrc repository is freely available, and is specified as a sane default.  The pkgsrc bootstrap tarball is also available from the same repo, and its URL and checksum are included as sane defaults.
+
 
 Recipes
 =======
